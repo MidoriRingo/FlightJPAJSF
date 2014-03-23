@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="WEB-INF/templates/busTemplate.xhtml">
+	<ui:define name="content">
+		<h2>Enter the data. You need to fill all the fields.</h2>
+		<h:form>
+			<h:panelGrid columns="3">
+				<h:outputText style="simpleText" value="FlightNo"></h:outputText>
+				<p:inputText id="flightNo" value="#{flightBean.flightNo}"
+					required="true">
+				</p:inputText>
+				<h:message for="flightNo" style="color:red" />
+				<h:outputText style="simpleText" value="Arrival City"></h:outputText>
+				<p:inputText id="arCity" value="#{flightBean.arrivalCity}"
+					required="true">
+				</p:inputText>
+				<h:message for="arCity" style="color:red" />
+				<h:outputText style="simpleText" value="Departure Date and Time"></h:outputText>
+				<p:inputText id="depDate" value="#{flightBean.departureDateTime}"
+					required="true">
+					<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+				</p:inputText>
+				<h:message for="depDate" style="color:red" />
+				<h:outputText style="simpleText" value="Arrival Date and Time"></h:outputText>
+				<p:inputText id="arTime" value="#{flightBean.arrivalDateTime}"
+					required="true">
+					<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+				</p:inputText>
+				<h:message for="arTime" style="color:red" />
+				<h:outputText style="simpleText" value="Ticket Price"></h:outputText>
+				<p:inputText id="price" value="#{flightBean.ticketPrice}"
+					required="true">
+				</p:inputText>
+				<h:message for="price" style="color:red" />
+				<h:outputText style="simpleText" value="Amount"></h:outputText>
+				<p:inputText id="amount" value="#{flightBean.amountOfTickets}"
+					required="true">
+				</p:inputText>
+				<h:message for="amount" style="color:red" />
+				<h:outputText style="simpleText" value="Company"></h:outputText>
+				<p:inputText id="comp" value="#{flightBean.company}" required="true">
+				</p:inputText>
+				<h:message for="comp" style="color:red" />
+				<h:outputText style="simpleText" value="Plane Type"></h:outputText>
+				<p:inputText id="plane" value="#{flightBean.planeType}"
+					required="true">
+				</p:inputText>
+				<h:message for="plane" style="color:red" />
+			</h:panelGrid>
+			<br />
+			<p:commandButton ajax="false" value="Add!"
+				action="#{flightBean.addFlight}"></p:commandButton>
+			<p:button outcome="businessNavigator" value="Go To Main Page" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

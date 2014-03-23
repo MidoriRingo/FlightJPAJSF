@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="WEB-INF/templates/busTemplate.xhtml">
+	<ui:define name="content">
+		<h2>Enter the data. You need to fill all the fields.</h2>
+		<h:form>
+			<h:panelGrid columns="3">
+				<h:outputText style="simpleText" value="Login"></h:outputText>
+				<p:inputText id="login" value="#{accountBean.login}"
+					required="true">
+				</p:inputText>
+				<h:message for="login" style="color:red" />
+				<h:outputText style="simpleText" value="Mail"></h:outputText>
+				<p:inputText id="mail" value="#{accountBean.email}"
+					required="true">
+				</p:inputText>
+				<h:message for="mail" style="color:red" />
+				<h:outputText style="simpleText" value="Role"></h:outputText>
+				<p:selectOneMenu id="role" value="#{accountBean.role}" required="true">
+								<f:selectItem itemLabel="Security Officer" itemValue="Security Officer" />
+								<f:selectItem itemLabel="Business Administrator" itemValue="Business Administrator" />
+								<f:selectItem itemLabel="Accountant" itemValue="Accountant" />
+								<f:selectItem itemLabel="Analyst" itemValue="Analyst" />
+							</p:selectOneMenu>
+				<h:message for="role" style="color:red" />
+				</h:panelGrid>
+			<br />
+			<p:commandButton ajax="false" value="Add new Account!"
+				action="#{accountBean.createUser}"></p:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

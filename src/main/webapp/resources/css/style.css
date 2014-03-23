@@ -1,0 +1,143 @@
+@CHARSET "UTF-8";
+
+#left {
+	width: 500px;
+	height: 100px;
+	float: left;
+	margin-left: 5px;
+	text-align: left;
+}
+
+#right {
+	width: 250px;
+	height: 100px;
+	float: right;
+	margin-left: 15px;
+	text-align: right;
+}
+
+a:link {
+	color: white;
+}
+
+a:visited {
+	color: white;
+}
+
+a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+a:active {
+	color: white;
+	text-decoration: none;
+}
+
+#header {
+	background: #fff;
+	font-size: 16px;
+	color: #fff;
+	border: 1px solid #3A5FCD;
+	border-radius: 20px;
+	width: 99%;
+	height: 120px;
+}
+
+#headerPanel {
+	background: #191970;
+	border: 1px solid #191970;
+	border-radius: 10px;
+	width: 99%;
+	height: 24px;
+}
+
+.headerText {
+	font-color: white;
+	font-size: 12px;
+	float: right;
+}
+
+.headerField {
+	width: 50px;
+	height: 10px;
+	border-radius: 3px;
+	float: right;
+}
+
+#content {
+	margin-top: 5px;
+	font-size: 16px;
+	padding: 10px 10px;
+	color: #1D5987;
+	border: 1px solid #5c9ccc;
+	border-radius: 20px;
+	width: 98%;
+	height: 500px;
+}
+
+.simpleText {
+	font-color: #1D5987;
+	font-size: 20px;
+}
+
+#footer {
+	background: #5c9ccc;
+	font-size: 12px;
+	padding: 10px 20px;
+	color: #fff;
+	border: 1px solid #3A5FCD;
+	border-radius: 20px;
+	width: 96%;
+	height: 10px;
+}
+
+.loginBut {
+	-moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+	box-shadow: inset 0px 1px 0px 0px #ffffff;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #82a0bf
+		), color-stop(1, #1D5987));
+	background: -moz-linear-gradient(center top, #82a0bf 5%, #191970 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1D5987',
+		endColorstr='#191970');
+	background-color: #82a0bf;
+	-webkit-border-top-left-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	border-top-left-radius: 15px;
+	-webkit-border-top-right-radius: 15px;
+	-moz-border-radius-topright: 15px;
+	border-top-right-radius: 15px;
+	-webkit-border-bottom-right-radius: 0px;
+	-moz-border-radius-bottomright: 0px;
+	border-bottom-right-radius: 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	border-bottom-left-radius: 0px;
+	text-indent: 0;
+	border: 1px solid #1D5987;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	height: 24px;
+	line-height: 24px;
+	width: 74px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.loginBut:hover {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #191970
+		), color-stop(1, #82a0bf));
+	background: -moz-linear-gradient(center top, #191970 5%, #82a0bf 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#191970',
+		endColorstr='#82a0bf');
+	background-color: #191970;
+}
+
+.loginBut:active {
+	position: relative;
+	top: 1px;
+}

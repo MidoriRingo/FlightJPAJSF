@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition>
+		<div
+			style="background: #1D5987; border-radius: 20px 20px 0 0; width: 100%; height: 32px; padding-bottom: 3px;">
+			<p:growl id="messages" showDetail="true" />
+			<h:form id="formLog">
+				<table style="float: right;">
+					<tr>
+					
+						<td><h:outputText styleClass="headerText" value="Login" /> <h:inputText
+								styleClass="headerField" required="true"
+								value="#{loginBean.name}" /></td>
+						<td><h:outputText styleClass="headerText" value="Password" />
+							<h:inputSecret styleClass="headerField" required="true"
+								value="#{loginBean.password}" /></td>
+						<td><h:commandButton styleClass="loginBut" value="Let me in"
+								action="#{loginBean.loginPage}" update="messages" /></td>
+
+					</tr>
+
+				</table>
+			</h:form>
+		</div>
+		<div
+			style="background: #5c9ccc; color: #fff; border-radius: 0 0 20px 20px; width: 100%; height: 82px; padding-top: 3px;">
+			<div
+				style="width: 70%; height: 50%; float: left; padding: 5px; font-size: 30px; font-color: #fff;">
+				Ticket Booking</div>
+			<div style="width: 29%; height: 50%; float: right;">
+				<p:button style="float:right" outcome="basket" value="Basket"
+					icon="ui-icon-star" />
+			</div>
+		</div>
+	</ui:composition>
+</h:body>
+</html>

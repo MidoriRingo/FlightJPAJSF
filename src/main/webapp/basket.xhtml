@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<h:form id="form1">
+		 <p:growl id="messages" showDetail="true"/>
+			<p:dataTable id="dataTable" value="#{basketBean.list}" var="item" paginator="true"
+				rows="4">
+				  <p:ajax event="rowEdit" listener="#{basketBean.onEdit}" update=":form1:messages" />  
+                   <p:ajax event="rowEditCancel" listener="#{basketBean.onCancel}" update=":form1:messages" /> 
+                    
+				<p:column headerText="Flight Nomer" style="width:10%">
+					<h:outputText value="#{item.flightNo}" />
+				</p:column>
+				<p:column headerText="City" style="width:10%">
+					<h:outputText value="#{item.city}" />
+				</p:column>
+				<p:column headerText="TIcket Price" style="width:10%">
+					<h:outputText value="#{item.ticketPrice}" />
+				</p:column>
+				<p:column headerText="Amount" style="width:12%">
+					 <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{item.count}" />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{item.count}" style="width:100%"/>  
+                            </f:facet>  
+                        </p:cellEditor> 
+				</p:column>
+				<p:column headerText="Options" style="width:10%">  
+                        <p:rowEditor />  
+                    </p:column> 
+                    	<p:column style="width:6%">
+				<p:commandButton icon="ui-icon-closethick" actionListener="#{basketBean.removeTicket(item)}" update="dataTable" >
+				<p:confirm header="Confirmation" message="Are you sure?"
+						icon="ui-icon-alert" rendered="dataTable"/>
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade"
+						hideEffect="explode">
+						<p:commandButton value="Yes" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							</p:confirmDialog>
+				</p:column>
+			
+				<f:facet name="footer">  
+            In total there are #{basketBean.sumOrder} UAH.  
+        </f:facet>
+			</p:dataTable>
+
+			<p:commandButton value="Book it for me!" ajax="false"
+				action="#{orderBean.enterDetails}" />
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

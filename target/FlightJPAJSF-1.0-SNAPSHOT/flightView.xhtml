@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<p:button outcome="index" value="Go To Main Page" />
+		<p:growl id="messages1" showDetail="true" />
+		<h:form id="form">
+			<p:dataTable id="cars" var="item" value="#{searchBean.flightModel}" paginator="true" rows="10"  
+                 selection="#{searchBean.selectedFlight}" selectionMode="single"> 
+				<p:column headerText="No" style="width:10%">
+					<h:outputText value="#{item.flightNo}" />
+				</p:column>
+				<p:column headerText="Arrival City" style="width:12%">
+					<h:outputText value="#{item.arrivalCity}" />
+				</p:column>
+				<p:column headerText="Departure Time" style="width:12%">
+					<h:outputText value="#{item.departureDateTime}">
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Arrival Time" style="width:12%">
+					<h:outputText value="#{item.arrivalDateTime}">
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Ticket Price" style="width:12%">
+					<h:outputText value="#{item.ticketPrice} UAH" />
+				</p:column>
+				<p:column headerText="Available Amount" style="width:10%">
+					<h:outputText value="#{item.amountOfTickets}" />
+				</p:column>
+				<p:column headerText="Company" style="width:10%">
+					<h:outputText value="#{item.company}" />
+				</p:column>
+				<p:column headerText="Plane Type" style="width:10%">
+					<h:outputText value="#{item.planeType}" />
+				</p:column>
+			</p:dataTable>
+
+			<p:commandButton value="Take this!" ajax="false"
+				action="#{searchBean.putTicketsToBasket}" update=":form:messages1"/>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

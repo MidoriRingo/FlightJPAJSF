@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="WEB-INF/templates/busTemplate.xhtml">
+	<ui:define name="content">
+		<h:form id="form">
+			<p:growl id="messages" showDetail="true" />
+			<p:dataTable id="dataTable" value="#{flightBean.flights}" var="item"
+				paginator="true" rows="4" editable="true">
+				<p:ajax event="rowEdit" listener="#{flightBean.onEdit}"
+					update=":form:messages" />
+				<p:ajax event="rowEditCancel" listener="#{flightBean.onCancel}"
+					update=":form:messages" />
+				<p:column headerText="No" style="width:10%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.flightNo}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{item.flightNo}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Arrival City" style="width:12%">
+
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.arrivalCity}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{item.arrivalCity}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Departure Time" style="width:12%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.departureDateTime}">
+								<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{item.departureDateTime}">
+								<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+							</h:inputText>
+						</f:facet>>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Arrival Time" style="width:12%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.arrivalDateTime}">
+								<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{item.arrivalDateTime}">
+								<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+							</h:inputText>
+						</f:facet>>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Ticket Price" style="width:12%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.ticketPrice} UAH" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{item.ticketPrice}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Available Amount" style="width:10%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.amountOfTickets}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{item.amountOfTickets}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Company" style="width:10%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.company}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{item.company}" />
+						</f:facet>
+					</p:cellEditor>
+
+				</p:column>
+				<p:column headerText="Plane Type" style="width:10%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.planeType}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{item.planeType}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column style="width:6%">
+					<p:rowEditor />
+				</p:column>
+				<p:column style="width:6%">
+					<p:commandButton icon="ui-icon-closethick"
+						actionListener="#{flightBean.removeFlight(item)}" update="dataTable">
+					<p:confirm header="Confirmation" message="Da you really want to delete this flight?"
+						icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:confirmDialog global="true" showEffect="fade"
+						hideEffect="explode">
+						<p:commandButton value="Yes" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+				</p:column>
+			</p:dataTable>
+			<p:commandButton ajax="false" value="Delete Unpayed Orders"
+				action="#{orderBean.deleteUnpayed}" />
+			<p:button outcome="addFlight" value="Add new Flight" />
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

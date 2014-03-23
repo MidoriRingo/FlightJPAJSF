@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<h1>Tell us about you!</h1>
+		<h:form>
+			<h:panelGrid columns="1">
+				<h:outputText styleClass="simpleText" value="Name:"></h:outputText>
+				<p:inputText id="name" value="#{orderBean.clientName}"
+					required="true">
+				</p:inputText>
+				<h:message for="name" style="color:red" />
+				<h:outputText styleClass="simpleText" value="Your Mail"></h:outputText>
+				<p:inputText value="#{orderBean.clientMail}" id="mail"
+					required="true" />
+				<h:message for="mail" style="color:red" />
+				<h:outputText styleClass="simpleText" value="Your Phone Number"></h:outputText>
+				<p:inputText id="phone" value="#{orderBean.clientPhone}"
+					required="true">
+				</p:inputText>
+				<h:message for="phone" style="color:red" />
+			</h:panelGrid>
+			<br />
+			<p:commandButton ajax="false" value="Book that tickets for me!!" action="#{orderBean.placeOrder}"></p:commandButton>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

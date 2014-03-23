@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<div style="width: 60%; height: 50%; float: left;">
+
+			<h1>Enter the data for searching:</h1>
+			<p:growl id="formmessages" showDetail="true" />
+			<h:form>
+				<h:panelGrid columns="1" style="margin-left: 20px">
+					<h:outputText styleClass="simpleText" value="To:"></h:outputText>
+					<p:inputText id="arCity" value="#{searchBean.arrivalCity}"
+						required="true">
+					</p:inputText>
+					<h:message for="arCity" style="color:red" />
+					<h:outputText styleClass="simpleText" value="Departure Period:" />
+					<h:outputText styleClass="simpleText" value="From:" />
+					<p:calendar value="#{searchBean.departureDateStart}"
+						id="popupButtonCal1" showOn="button" />
+					<h:message for="popupButtonCal1" style="color:red" />
+					<h:outputText styleClass="simpleText" value="Till:"></h:outputText>
+					<p:calendar value="#{searchBean.departureDateEnd}"
+						id="popupButtonCal2" showOn="button" />
+					<h:message for="dDate" style="color:red" />
+					<h:outputText styleClass="simpleText" value="How Many:"></h:outputText>
+					<p:inputText id="amount" value="#{searchBean.amount}"
+						required="true">
+						<f:validateLongRange minimum="1" />
+					</p:inputText>
+					<h:message for="amount" style="color:red" />
+				</h:panelGrid>
+				<br />
+				<p:commandButton ajax="false" value="Search!"
+					action="#{searchBean.searchFlightsCustomer}" update="formmessages"></p:commandButton>
+			</h:form>
+		</div>
+		<div
+			style="width: 40%; height: 50%; float: right; color: #fff; font-size: 16px;">
+			<p:button style="float: right" 
+				value="Shedule for today" icon="ui-icon-star" />
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>

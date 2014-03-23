@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="WEB-INF/templates/busTemplate.xhtml">
+	<ui:define name="content">
+		<h:form id="form">
+			<p:growl id="messages" showDetail="true" />
+			<p:dataTable id="dataTable" value="#{accountBean.allUserAccounts}"
+				var="item" paginator="true" rows="4" editable="true"
+				selection="#{accountBean.selectedAccount}">
+
+				<p:ajax event="rowEdit" listener="#{accountBean.onEdit}"
+					update=":form:messages" />
+				<p:ajax event="rowEditCancel" listener="#{accountBean.onCancel}"
+					update=":form:messages" />
+				<p:column headerText="Login" style="width:10%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.login}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{item.login}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Mail" style="width:12%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.mail}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{item.mail}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Role" style="width:12%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.role}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu id="basic" value="#{item.role}">
+								<f:selectItem itemLabel="Security Officer" itemValue="Security Officer" />
+								<f:selectItem itemLabel="Business Administrator" itemValue="Business Administrator" />
+								<f:selectItem itemLabel="Accountant" itemValue="Accountant" />
+								<f:selectItem itemLabel="Analyst" itemValue="Analyst" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column style="width:6%">
+					<p:rowEditor />
+				</p:column>
+				<p:column style="width:6%">
+					<p:commandButton icon="ui-icon-closethick"
+						actionListener="#{accountBean.removeUser(item)}"
+						update="dataTable">
+						<p:confirm header="Confirmation"
+							message="Do you really want to delete this user?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:confirmDialog global="true" showEffect="fade"
+						hideEffect="explode">
+						<p:commandButton value="Yes" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

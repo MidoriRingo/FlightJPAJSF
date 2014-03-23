@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="WEB-INF/templates/busTemplate.xhtml">
+	<ui:define name="content">
+		<p:button outcome="mainPage" value="Go To Main Page" />
+		<h:form id="form">
+			<p:dataTable value="#{accountBean.list}" var="item">
+				<p:column headerText="Login" style="width:10%">
+					<h:outputText value="#{item.login}" />
+				</p:column>
+				<p:column headerText="Password" style="width:12%">
+					<h:outputText value="#{item.password}" />
+				</p:column>
+				<p:column headerText="E-Mail" style="width:12%">
+					<h:outputText value="#{item.mail}">
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Role" style="width:12%">
+					<h:outputText value="#{item.role}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
